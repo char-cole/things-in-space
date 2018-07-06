@@ -38,18 +38,63 @@ class App extends Component {
       selectedCity: "Baguirmi",
     };
     this.handleCountry = this.handleCountry.bind(this);
+    this.handleRegion = this.handleRegion.bind(this);
+    this.handleCity = this.handleCity.bind(this);
   };
 
   handleCountry(event) {
     const tempArray = event.target.value.split(',');
-    const tempO = {
-      name: tempArray[0],
-      code: tempArray[1]
-    }
-    this.setState({ selectedCountry: tempO });
+    this.setState({ selectedCountry: tempArray });
+    fetch(battutaURL+"region/"+tempArray[1]+"/all/?key="+battutaKey)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              const tempTwo = result.map((item) => {
+                return item.region;
+              })
+              this.setState({
+                regionLoaded: true,
+                regionList: tempTwo,
+              });
+              console.log(this.state.regionList)
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                regionLoaded: true,
+                error
+              });
+            }
+          )
   }
   handleRegion(event) {
-    this.setState({ selectedRegion: event.target.value });
+    const tempRegion = event.target.value;
+    const tempCountry = this.state.selectedCountry[1]
+    console.log(tempRegion);
+    console.log(tempRegion.replace(/\s+/g, '_'));
+    console.log(tempCountry);
+    fetch(battutaURL+"city/"+tempCountry+"/search/?region="+tempRegion.replace(/\s+/g, '_')+"&key="+battutaKey)
+          .then(res => res.json())
+          .then(
+            (result) => {
+              console.log(result);
+              this.setState({
+                cityLoaded: true,
+                cityList: result,
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                regionLoaded: true,
+                error
+              });
+            }
+          )
   }
   handleCity(event) {
     this.setState({ selectedCity: event.target.value });
@@ -75,49 +120,8 @@ class App extends Component {
               });
             }
           )
-    fetch(battutaURL+"region/"+this.state.selectedCountry[1]+"/all/?key="+battutaKey)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              const tempArray = result.map((item) => {
-                return Object.values(item);
-              })
-              this.setState({
-                regionLoaded: true,
-                regionList: tempArray,
-              });
-              console.log(this.state.regionList)
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                regionLoaded: true,
-                error
-              });
-            }
-          )
-    fetch(battutaURL+"city/"+this.state.selectedCountry[1]+"/search/?region="+this.state.selectedRegion.replace(/\s+/g, '_')+"&key="+battutaKey)
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                cityLoaded: true,
-                cityList: result,
-              });
-              console.log(this.state.cityList)
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                regionLoaded: true,
-                error
-              });
-            }
-          )
+
+
     fetch("http://api.open-notify.org/iss-pass.json?lat=70&lon=100&n=1")
           .then(res => res.json())
           .then(
@@ -161,13 +165,13 @@ class App extends Component {
     })
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!countryLoaded || !regionLoaded || !cityLoaded || !passLoaded) {
+    } else if (!countryLoaded || !passLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
         <div Grid container>
           <div Grid item xs>
-            <select value={selectedCountry} onChange={this.handleCountry}>
+            <select value={selectedCountry.name} onChange={this.handleCountry}>
               {optionsCountry}
             </select>
           </div>
