@@ -5,9 +5,7 @@ class FlyoverCalc extends Component {
     super(props);
 
   };
-
-
-
+  
   render() {
       return (
         <div>

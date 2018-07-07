@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import FlyoverCalc from './FlyoverCalc'
 
 /*
@@ -48,6 +47,7 @@ class App extends Component {
     this.handleRegion = this.handleRegion.bind(this);
     this.handleCity = this.handleCity.bind(this);
   };
+
 
   handleCountry(event) {
     const tempArray = event.target.value.split(',');
@@ -104,7 +104,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.selectedCity);
     const tempCityLat = this.state.selectedCity.latitude;
     const tempCityLong = this.state.selectedCity.longitude;
 
@@ -133,7 +132,6 @@ class App extends Component {
           .then(res => res.json())
           .then(
             (result) => {
-              console.log(tempCityLat)
               const passDate = new Date(result.response[0].risetime*1000);
               this.setState({
                 passLoaded: true,
@@ -179,23 +177,27 @@ class App extends Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div Grid container>
-          <div Grid item xs>
-            <select value={selectedCountry.name} onChange={this.handleCountry}>
-              {optionsCountry}
-            </select>
+        <div>
+          <div>
+            <div>
+              <select value={selectedCountry.name} onChange={this.handleCountry}>
+                {optionsCountry}
+              </select>
+            </div>
+            <div>
+              <select value={selectedRegion} onChange={this.handleRegion}>
+                {optionsRegion}
+              </select>
+            </div>
+            <div>
+              <select value={selectedCity.city} onChange={this.handleCity}>
+                {optionsCity}
+              </select>
+            </div>
+            <div>
+              {<FlyoverCalc city={selectedCity.city} country={selectedCity.region} lat={selectedCity.latitude} long={selectedCity.longitude} next={nextPass.date} duration={nextPass.duration}/>}
+            </div>
           </div>
-          <div Grid item xs>
-            <select value={selectedRegion} onChange={this.handleRegion}>
-              {optionsRegion}
-            </select>
-          </div>
-          <div Grid item xs>
-            <select value={selectedCity.city} onChange={this.handleCity}>
-              {optionsCity}
-            </select>
-          </div>
-          <div Grid item xs={12}>{<FlyoverCalc city={selectedCity.city} country={selectedCity.region} lat={selectedCity.latitude} long={selectedCity.longitude} next={nextPass.date} duration={nextPass.duration}/>}</div>
         </div>
       );
     }
