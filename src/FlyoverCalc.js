@@ -5,13 +5,13 @@ class FlyoverCalc extends Component {
     super(props);
 
   };
-  
+
   render() {
       return (
         <div>
-        <h1>{this.props.city}, {this.props.country} is at {this.props.lat}, {this.props.long}</h1>
-        <h2>The ISS will be over {this.props.city} next at {this.props.next}</h2>
-        <h3>The flyover will last {this.props.duration} minutes</h3>
+        <h1 className="display-4">({this.props.lat}, {this.props.long})</h1>
+        <h2>{this.props.city}, {this.props.country}</h2>
+        <p> Next ISS flyover: {this.props.next} (duration: {this.props.duration})</p>
         </div>
       );
     }

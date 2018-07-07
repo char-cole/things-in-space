@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import FlyoverCalc from './FlyoverCalc'
+import {
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
 
 /*
 List of countries called from bAPI and saved to state as objects with .name and .code
@@ -18,6 +23,11 @@ Separately, display current ISS coordinates
 
 const battutaKey = "ad3486b7c0cf4595f01223963f58f91a";
 const battutaURL = "http://battuta.medunes.net/api/";
+
+const rowStyle = {
+  minWidth: "100px",
+  margin: "20px auto"
+};
 
 class App extends Component {
   constructor(props) {
@@ -101,6 +111,32 @@ class App extends Component {
     const tempName = event.target.value;
     const tempCityFull = this.state.cityList.find(c => c.city === tempName);
     this.setState({ selectedCity: tempCityFull });
+    const tempCityLat = this.state.selectedCity.latitude;
+    const tempCityLong = this.state.selectedCity.longitude;
+    fetch("http://api.open-notify.org/iss-pass.json?lat="+tempCityLat+"&lon="+tempCityLong+"&n=1")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              const passDate = new Date(result.response[0].risetime*1000);
+              const durationRaw = result.response[0].duration;
+              this.setState({
+                passLoaded: true,
+                nextPass: {
+                  date: passDate.toString(),
+                  duration: (durationRaw/60).toFixed(0)+":"+(durationRaw%60),
+                }
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                passLoaded: true,
+                error
+              });
+            }
+          )
   }
 
   componentDidMount() {
@@ -133,11 +169,12 @@ class App extends Component {
           .then(
             (result) => {
               const passDate = new Date(result.response[0].risetime*1000);
+              const durationRaw = result.response[0].duration;
               this.setState({
                 passLoaded: true,
                 nextPass: {
                   date: passDate.toString(),
-                  duration: (result.response[0].duration/60).toFixed(2),
+                  duration: (durationRaw/60).toFixed(0)+":"+(durationRaw%60),
                 }
               });
             },
@@ -178,26 +215,36 @@ class App extends Component {
     } else {
       return (
         <div>
-          <div>
-            <div>
+        <Container>
+          <Row>
+            <Col style={rowStyle}>
+            </Col>
+            <Col style={rowStyle}>
               <select value={selectedCountry.name} onChange={this.handleCountry}>
                 {optionsCountry}
               </select>
-            </div>
-            <div>
+            </Col>
+            <Col style={rowStyle}>
+            </Col>
+            <Col style={rowStyle}>
               <select value={selectedRegion} onChange={this.handleRegion}>
                 {optionsRegion}
               </select>
-            </div>
-            <div>
+            </Col>
+            <Col style={rowStyle}>
+            </Col>
+            <Col style={rowStyle}>
               <select value={selectedCity.city} onChange={this.handleCity}>
                 {optionsCity}
               </select>
-            </div>
-            <div>
+            </Col>
+            <Col style={rowStyle}>
+            </Col>
+            <Col-12-xs style={rowStyle}>
               {<FlyoverCalc city={selectedCity.city} country={selectedCity.region} lat={selectedCity.latitude} long={selectedCity.longitude} next={nextPass.date} duration={nextPass.duration}/>}
-            </div>
-          </div>
+            </Col-12-xs>
+          </Row>
+        </Container>
         </div>
       );
     }
