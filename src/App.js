@@ -26,16 +26,23 @@ class App extends Component {
     this.state = {
       error: null,
       countryLoaded: false,
-      regionLoaded: false,
-      cityLoaded: false,
       passLoaded: false,
-      nextPass: "",
+      nextPass: {
+        date: "",
+        duration: ""
+      },
       countryList: [],
       regionList: [],
       cityList: [],
       selectedCountry: ["Chad", "td"],
       selectedRegion: "Chari-Baguirmi Region",
-      selectedCity: "Baguirmi",
+      selectedCity: {
+        city: "Baguirmi",
+        country: "td",
+        latitude: "11.42146969",
+        longitude: "16.34638023",
+        region: "Chari-Baguirmi Region"
+      },
     };
     this.handleCountry = this.handleCountry.bind(this);
     this.handleRegion = this.handleRegion.bind(this);
@@ -53,17 +60,14 @@ class App extends Component {
                 return item.region;
               })
               this.setState({
-                regionLoaded: true,
                 regionList: tempTwo,
               });
-              console.log(this.state.regionList)
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
               this.setState({
-                regionLoaded: true,
                 error
               });
             }
@@ -72,16 +76,14 @@ class App extends Component {
   handleRegion(event) {
     const tempRegion = event.target.value;
     const tempCountry = this.state.selectedCountry[1]
-    console.log(tempRegion);
-    console.log(tempRegion.replace(/\s+/g, '_'));
-    console.log(tempCountry);
+    this.setState({
+      selectedRegion: tempRegion,
+    });
     fetch(battutaURL+"city/"+tempCountry+"/search/?region="+tempRegion.replace(/\s+/g, '_')+"&key="+battutaKey)
           .then(res => res.json())
           .then(
             (result) => {
-              console.log(result);
               this.setState({
-                cityLoaded: true,
                 cityList: result,
               });
             },
@@ -90,17 +92,22 @@ class App extends Component {
             // exceptions from actual bugs in components.
             (error) => {
               this.setState({
-                regionLoaded: true,
                 error
               });
             }
           )
   }
   handleCity(event) {
-    this.setState({ selectedCity: event.target.value });
+    const tempName = event.target.value;
+    const tempCityFull = this.state.cityList.find(c => c.city === tempName);
+    this.setState({ selectedCity: tempCityFull });
   }
 
   componentDidMount() {
+    console.log(this.state.selectedCity);
+    const tempCityLat = this.state.selectedCity.latitude;
+    const tempCityLong = this.state.selectedCity.longitude;
+
     fetch(battutaURL+"country/all/?key="+battutaKey)
           .then(res => res.json())
           .then(
@@ -122,16 +129,19 @@ class App extends Component {
           )
 
 
-    fetch("http://api.open-notify.org/iss-pass.json?lat=70&lon=100&n=1")
+    fetch("http://api.open-notify.org/iss-pass.json?lat="+tempCityLat+"&lon="+tempCityLong+"&n=1")
           .then(res => res.json())
           .then(
             (result) => {
+              console.log(tempCityLat)
               const passDate = new Date(result.response[0].risetime*1000);
               this.setState({
                 passLoaded: true,
-                nextPass: passDate.toString()
+                nextPass: {
+                  date: passDate.toString(),
+                  duration: (result.response[0].duration/60).toFixed(2),
+                }
               });
-              console.log("Next pass: "+passDate+" (duration: "+(result.response[0].duration/60).toFixed(2)+" minutes)");
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -146,7 +156,7 @@ class App extends Component {
   }
 
   render() {
-    const { error, countryLoaded, regionLoaded, cityLoaded, passLoaded, nextPass, countryList, regionList, cityList, selectedCountry, selectedRegion, selectedCity } = this.state;
+    const { error, countryLoaded, passLoaded, nextPass, countryList, regionList, cityList, selectedCountry, selectedRegion, selectedCity } = this.state;
     const optionsCountry = countryList.map(item => {
       if (countryList) {
         const tempArray = Object.values(item);
@@ -160,7 +170,7 @@ class App extends Component {
     })
     const optionsCity = cityList.map(item => {
       if (cityList) {
-        return <option value={item} key={item.city}>{item.city}</option>
+        return <option value={item.city} key={item.city}>{item.city}</option>
       }
     })
     if (error) {
@@ -181,11 +191,11 @@ class App extends Component {
             </select>
           </div>
           <div Grid item xs>
-            <select value={selectedCity} onChange={this.handleCity}>
+            <select value={selectedCity.city} onChange={this.handleCity}>
               {optionsCity}
             </select>
           </div>
-          <div Grid item xs={12}>{<FlyoverCalc city={selectedCity.name} lat={selectedCity.latitude} long={selectedCity.longitude} next={nextPass}/>}</div>
+          <div Grid item xs={12}>{<FlyoverCalc city={selectedCity.city} country={selectedCity.region} lat={selectedCity.latitude} long={selectedCity.longitude} next={nextPass.date} duration={nextPass.duration}/>}</div>
         </div>
       );
     }
