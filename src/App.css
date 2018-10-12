@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  font-family: "Roboto"
+  font-family: "Roboto";
+
 }
 
 .container {
@@ -10,4 +11,80 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+body {
+  /* background: linear-gradient(darkblue, black); */
+  background-color: black;
+  margin: 0;
+}
+
+li {
+  margin: 20px 0;
+}
+
+header {
+  color: white;
+  grid-area: header;
+  justify-self: stretch;
+  padding: 20px auto;
+}
+
+h2 {
+  font-size: .9em
+}
+
+.grid-container {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header"
+    "left right";
+  width: 90%;
+  margin: 10px 40px;
+}
+
+.grid-item {
+  justify-self: center;
+  text-align: center;
+}
+
+.left {
+  grid-area: left;
+  padding: 10px 10%;
+}
+
+.right {
+  grid-area: right;
+  padding: 10px 10px;
+}
+
+.locButton {
+  margin: 10px;
+}
+
+.trackerContainer {
+  grid-template-areas:
+  "input button"
+  "output ouput"
+}
+
+.coordinates {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  grid-area: input;
+}
+
+.updateButton {
+  max-height: 40px;
+  align-self: center;
+  grid-area: button;
+}
+
+.wide {
+  justify-self: center;
+  grid-area: output;
 }

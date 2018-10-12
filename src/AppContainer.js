@@ -1,7 +1,7 @@
 import App from "./App";
 import "./App.css";
 import { connect } from "react-redux";
-import {loadFlyover} from "./actions";
+import {loadFlyover, } from "./actions";
 
 
 function mapDispatchToProps(dispatch) {
