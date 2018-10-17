@@ -63,6 +63,7 @@ h2 {
 
 .locButton {
   margin: 10px;
+  min-width: 130px;
 }
 
 .trackerContainer {
