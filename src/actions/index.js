@@ -1,3 +1,5 @@
+import { feature } from "topojson-client"
+
 export function loadFlyover(lat, long) {
     return function (dispatch) {
         fetch("http://api.open-notify.org/iss-pass.json?lat="+lat+"&lon="+long)
@@ -69,5 +71,28 @@ export function updateCoords(lat, long) {
     return {
         type: "COORDS_UPDATED",
         value: [lat,long]
+    }
+}
+
+export function getMap() {
+    return function (dispatch) {
+        fetch("https://unpkg.com/world-atlas@1/world/110m.json")
+        .then(response => {
+          if (response.status !== 200) {
+            console.log(`There was a problem: ${response.status}`)
+            return
+          }
+          response.json()
+          .then(worldData => {
+              dispatch(mapLoaded(feature(worldData, worldData.objects.countries).features))
+          })
+        })
+    }
+}
+
+function mapLoaded(data) {
+    return {
+        type: "MAP_LOADED",
+        value: data
     }
 }

@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LocationButtonsContainer from "./containers/LocationButtonsContainer";
 import StationTrackerContainer from './containers/StationTrackerContainer';
+import WorldMapContainer from './containers/WorldMapContainer';
 import InfoList from './components/InfoList';
 import {
   Container,
@@ -19,6 +20,7 @@ class App extends Component {
           <h1>The International Space Station</h1>
         </header>
         <div className="grid-item left">
+          <WorldMapContainer/>
           <InfoList/>
         </div>
         <div className="grid-item right">

@@ -28,8 +28,15 @@ function buttons(state=[], action) {
     return state;
 }
 
+function worldData(state=[], action) {
+    if (action.type === "MAP_LOADED") {
+        return action.value;
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    flyover, currentLat, currentLong, buttons, 
+    flyover, currentLat, currentLong, buttons, worldData
 });
 
 export default rootReducer;
