@@ -96,3 +96,31 @@ function mapLoaded(data) {
         value: data
     }
 }
+
+export function loadCurrent() {
+    return function (dispatch) {
+        fetch("http://api.open-notify.org/iss-now.json")
+        .then(response => {
+            if (response.status !== 200) {
+              console.log(`There was a problem: ${response.status}`)
+              return
+            }
+            response.json()
+            .then(coords => {
+                let current = {
+                    loaded: true,
+                    coords: [parseFloat(coords.iss_position.latitude),parseFloat(coords.iss_position.longitude)]
+                };
+                console.log(current);
+                dispatch(currentLoaded(current))})
+          })
+    }
+}
+
+function currentLoaded(coords) {
+    console.log(coords);
+    return {
+        type: "CURRENT_LOADED",
+        value: coords
+    }
+}

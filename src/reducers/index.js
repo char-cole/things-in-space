@@ -7,14 +7,14 @@ function flyover(state = {}, action) {
   return state;
 }
 
-function currentLat(state = "", action) {
+function inputLat(state = "", action) {
     if (action.type === "LAT_UPDATED") {
         return action.value;
     }
     return state;
 }
 
-function currentLong(state = "", action) {
+function inputLong(state = "", action) {
     if (action.type === "LONG_UPDATED") {
         return action.value;
     }
@@ -35,8 +35,15 @@ function worldData(state=[], action) {
     return state;
 }
 
+function currentCoords(state=[], action) {
+    if (action.type === "CURRENT_LOADED") {
+        return action.value;
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    flyover, currentLat, currentLong, buttons, worldData
+    flyover, inputLat, inputLong, buttons, worldData, currentCoords
 });
 
 export default rootReducer;

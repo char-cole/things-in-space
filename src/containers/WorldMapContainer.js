@@ -1,14 +1,19 @@
 import { connect } from "react-redux";
 import WorldMap from "../components/WorldMap";
-import { getMap } from "../actions";
+import { getMap, loadCurrent } from "../actions";
 
 const mapStateToProps = (state) => ({
-    worldData: state.worldData
+    worldData: state.worldData,
+    currentCoords: state.currentCoords,
+    flyover: state.flyover
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getMap: () => {
         dispatch(getMap())
+    },
+    getCoords: () => {
+        dispatch(loadCurrent())
     }
 });
 

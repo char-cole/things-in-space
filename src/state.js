@@ -1,8 +1,10 @@
 export default {
+    currentCoords: [0,0],
+    currentLoaded: false,
     worldData: [],
     flyover: {},
-    currentLat: "",
-    currentLong: "",
+    inputLat: "",
+    inputLong: "",
     buttons: [
         {
             name: "New York",

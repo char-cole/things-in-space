@@ -4,8 +4,8 @@ import { loadFlyover, updateLat, updateLong } from "../actions";
 
 const mapStateToProps = (state) => ({
     flyover: state.flyover,
-    currentLat: state.currentLat,
-    currentLong: state.currentLong,
+    inputLat: state.inputLat,
+    inputLong: state.inputLong,
 });
 
 const mapDispatchToProps = (dispatch) => ({
