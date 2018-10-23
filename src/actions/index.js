@@ -106,19 +106,19 @@ export function loadCurrent() {
               return
             }
             response.json()
-            .then(coords => {
+            .then(res => {
+                console.log(res);
                 let current = {
                     loaded: true,
-                    coords: [parseFloat(coords.iss_position.latitude),parseFloat(coords.iss_position.longitude)]
+                    longLat: [parseFloat(res.iss_position.longitude), parseFloat(res.iss_position.latitude)]
                 };
-                console.log(current);
                 dispatch(currentLoaded(current))})
           })
     }
 }
 
 function currentLoaded(coords) {
-    console.log(coords);
+    console.log(coords.longLat);
     return {
         type: "CURRENT_LOADED",
         value: coords

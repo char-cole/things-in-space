@@ -1,6 +1,5 @@
 export default {
-    currentCoords: [0,0],
-    currentLoaded: false,
+    currentCoords: {},
     worldData: [],
     flyover: {},
     inputLat: "",

@@ -9,11 +9,12 @@ class Marker extends Component {
       }
     render() {
         if(this.props.current.loaded){
+            console.log(this.props.current.longLat);
             return (
             <circle
-            cx={ this.projection()(this.props.current.coords[0]) }
-            cy={ this.projection()(this.props.current.coords[1]) }
-            r={ 10 }
+            cx={ this.projection()(this.props.current.longLat)[0] }
+            cy={ this.projection()(this.props.current.longLat)[1] }
+            r={ 7 }
             fill="#E91E63"
             className="marker"
             />

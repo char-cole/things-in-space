@@ -35,7 +35,7 @@ function worldData(state=[], action) {
     return state;
 }
 
-function currentCoords(state=[], action) {
+function currentCoords(state={}, action) {
     if (action.type === "CURRENT_LOADED") {
         return action.value;
     }
