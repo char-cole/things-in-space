@@ -42,8 +42,15 @@ function currentCoords(state={}, action) {
     return state;
 }
 
+function selectedProjection(state="geoConicEqualArea", action) {
+    if (action.type === "PROJECTION_UPDATED") {
+        return action.value;
+    }
+    return state;
+}
+
 const rootReducer = combineReducers({
-    flyover, inputLat, inputLong, buttons, worldData, currentCoords
+    flyover, inputLat, inputLong, buttons, worldData, currentCoords, selectedProjection
 });
 
 export default rootReducer;

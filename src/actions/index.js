@@ -107,20 +107,26 @@ export function loadCurrent() {
             }
             response.json()
             .then(res => {
-                console.log(res);
                 let current = {
                     loaded: true,
                     longLat: [parseFloat(res.iss_position.longitude), parseFloat(res.iss_position.latitude)]
                 };
+                console.log(current.longLat);
                 dispatch(currentLoaded(current))})
           })
     }
 }
 
 function currentLoaded(coords) {
-    console.log(coords.longLat);
     return {
         type: "CURRENT_LOADED",
         value: coords
+    }
+}
+
+export function selectProjection(projection) {
+    return {
+        type: "PROJECTION_UPDATED",
+        value: projection
     }
 }

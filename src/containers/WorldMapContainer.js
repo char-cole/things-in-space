@@ -5,7 +5,8 @@ import { getMap, loadCurrent } from "../actions";
 const mapStateToProps = (state) => ({
     worldData: state.worldData,
     currentCoords: state.currentCoords,
-    flyover: state.flyover
+    flyover: state.flyover,
+    projection: state.selectedProjection
 });
 
 const mapDispatchToProps = (dispatch) => ({

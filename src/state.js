@@ -1,6 +1,7 @@
 export default {
     currentCoords: {},
     worldData: [],
+    selectedProjection: "",
     flyover: {},
     inputLat: "",
     inputLong: "",

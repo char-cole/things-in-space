@@ -1,18 +1,19 @@
 import React, { Component } from "react"
-import { geoMercator, geoPath } from "d3-geo"
+import { geoConicEqualArea, geoPath } from "d3-geo"
+import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
 import { Button } from 'reactstrap';
 
 class WorldMap extends Component {
-  projection() {
-    return geoMercator()
-      .scale(100)
-      .translate([ 800 / 2, 450 / 2 ])
-  }
-  componentDidMount() {
-    this.props.getMap();
-  }
-  render() {
+    projection() {
+        return geoConicEqualArea()
+          .scale(100)
+          .translate([ 800 / 2, 450 / 2 ])
+     }
+    componentDidMount() {
+        this.props.getMap();
+    }
+    render() {
         return (
             <div>
                 <Button
