@@ -43,7 +43,8 @@ function currentCoords(state={}, action) {
 }
 
 function selectedProjection(state="geoConicEqualArea", action) {
-    if (action.type === "PROJECTION_UPDATED") {
+    if (action.type === "PROJECTION_CHANGED") {
+        console.log("projection is now "+action.value)
         return action.value;
     }
     return state;

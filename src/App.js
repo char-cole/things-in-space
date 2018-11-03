@@ -15,15 +15,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="grid-container" >
-        <header className="grid-item">
+      <div  >
+        <header >
           <h1>The International Space Station</h1>
         </header>
-        <div className="grid-item left">
+        <div >
           <WorldMapContainer/>
           <InfoList/>
         </div>
-        <div className="grid-item right">
+        <div >
           <h2>Enter your coordinates,<br/>or select from these locations!</h2>
           <LocationButtonsContainer/>
           <StationTrackerContainer />

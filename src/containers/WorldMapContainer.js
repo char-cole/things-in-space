@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import WorldMap from "../components/WorldMap";
-import { getMap, loadCurrent } from "../actions";
+import { getMap, loadCurrent, changeProjection } from "../actions";
 
 const mapStateToProps = (state) => ({
     worldData: state.worldData,
     currentCoords: state.currentCoords,
     flyover: state.flyover,
-    projection: state.selectedProjection
+    selectedProjection: state.selectedProjection
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getCoords: () => {
         dispatch(loadCurrent())
+    },
+    changeProjection: (projection) => {
+        dispatch(changeProjection(projection))
     }
 });
 

@@ -43,9 +43,6 @@ export function loadFlyover(lat, long) {
     };
 }
 
-// duration: (durationRaw/60).toFixed(0)+" minutes, "+(durationRaw%60)+" seconds"
-
-
 function flyoverLoaded(passDate) {
     return {
         type: "FLYOVER_LOADED",
@@ -124,9 +121,10 @@ function currentLoaded(coords) {
     }
 }
 
-export function selectProjection(projection) {
+export function changeProjection(projection) {
+    console.log("projection is "+projection);
     return {
-        type: "PROJECTION_UPDATED",
+        type: 'PROJECTION_CHANGED',
         value: projection
     }
 }
