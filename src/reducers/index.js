@@ -42,9 +42,9 @@ function currentCoords(state={}, action) {
     return state;
 }
 
-function selectedProjection(state="geoConicEqualArea", action) {
+function selectedProjection(state="geoMercator", action) {
     if (action.type === "PROJECTION_CHANGED") {
-        console.log("projection is now "+action.value)
+        console.log("reducer reads the following projection: "+action.value)
         return action.value;
     }
     return state;

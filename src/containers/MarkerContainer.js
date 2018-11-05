@@ -3,7 +3,7 @@ import Marker from "../components/Marker";
 
 const mapStateToProps = (state) => ({
     current: state.currentCoords,
-    projection: state.selectedProjection
+    selectedProjection: state.selectedProjection
 });
 
 export default connect(mapStateToProps)(Marker);

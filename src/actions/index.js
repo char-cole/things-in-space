@@ -7,7 +7,7 @@ export function loadFlyover(lat, long) {
         .then((pass) => {
             console.log(pass);
             const dateRaw = new Date(pass.response[0].risetime*1000);
-            const endDate = new Date((pass.response[0].risetime + pass.response[0].duration)*1000) 
+            const endRaw = new Date((pass.response[0].risetime + pass.response[0].duration)*1000) 
             const dateObj = {
                 hours: dateRaw.getHours(),
                 minutes: dateRaw.getMinutes(),
@@ -16,11 +16,11 @@ export function loadFlyover(lat, long) {
                 month: dateRaw.getMonth()+1
             };
             const endObj = {
-                hours: endDate.getHours(),
-                minutes: endDate.getMinutes(),
-                seconds: endDate.getSeconds(),
-                day: endDate.getDate(),
-                month: endDate.getMonth()+1
+                hours: endRaw.getHours(),
+                minutes: endRaw.getMinutes(),
+                seconds: endRaw.getSeconds(),
+                day: endRaw.getDate(),
+                month: endRaw.getMonth()+1
             };
             const passDate = {
                 loaded: true,
@@ -39,7 +39,8 @@ export function loadFlyover(lat, long) {
             };
             console.log(passDate);
         dispatch(flyoverLoaded(passDate));
-      });
+        })
+        .catch(err => console.error('Caught error: ', err))
     };
 }
 
@@ -84,6 +85,7 @@ export function getMap() {
               dispatch(mapLoaded(feature(worldData, worldData.objects.countries).features))
           })
         })
+        .catch(err => console.error('Caught error: ', err))
     }
 }
 
@@ -99,8 +101,8 @@ export function loadCurrent() {
         fetch("http://api.open-notify.org/iss-now.json")
         .then(response => {
             if (response.status !== 200) {
-              console.log(`There was a problem: ${response.status}`)
-              return
+                console.log(`There was a problem: ${response.status}`)
+                return
             }
             response.json()
             .then(res => {
@@ -109,8 +111,10 @@ export function loadCurrent() {
                     longLat: [parseFloat(res.iss_position.longitude), parseFloat(res.iss_position.latitude)]
                 };
                 console.log(current.longLat);
-                dispatch(currentLoaded(current))})
-          })
+                dispatch(currentLoaded(current))
+            })
+        })
+        .catch(err => console.error('Caught error: ', err))
     }
 }
 
@@ -122,7 +126,7 @@ function currentLoaded(coords) {
 }
 
 export function changeProjection(projection) {
-    console.log("projection is "+projection);
+    console.log("action reads projection as: "+projection);
     return {
         type: 'PROJECTION_CHANGED',
         value: projection

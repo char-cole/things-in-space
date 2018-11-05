@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { geoConicEqualArea } from "d3-geo"
+import { geoConicEqualArea, geoMercator } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 
 class Marker extends Component {
@@ -13,19 +13,25 @@ class Marker extends Component {
           .scale(100)
           .translate([ 800 / 2, 450 / 2 ])
     }
+    projectionMercator() {
+        return geoMercator()
+          .scale(100)
+          .translate([ 800 / 2, 450 / 2 ])
+    }
     render() {
         if(this.props.current.loaded){
-            if (this.props.selectedProjection === "geoHill"){
+            if (this.props.selectedProjection === "geoHill") {
                 return (
-                <circle
-                cx={ this.projectionHill()(this.props.current.longLat)[0] }
-                cy={ this.projectionHill()(this.props.current.longLat)[1] }
-                r={ 7 }
-                fill="#E91E63"
-                className="marker"
-                />
+                    <circle
+                    cx={ this.projectionHill()(this.props.current.longLat)[0] }
+                    cy={ this.projectionHill()(this.props.current.longLat)[1] }
+                    r={ 7 }
+                    fill="#E91E63"
+                    className="marker"
+                    />
                 )
-            } else {
+            }
+            if (this.props.selectedProjection === "geoConicEqualArea") {
                 return (
                     <circle
                     cx={ this.projectionConic()(this.props.current.longLat)[0] }
@@ -34,8 +40,20 @@ class Marker extends Component {
                     fill="#E91E63"
                     className="marker"
                     />
-                    )
+                )
             }
+            {
+                return (
+                    <circle
+                    cx={ this.projectionMercator()(this.props.current.longLat)[0] }
+                    cy={ this.projectionMercator()(this.props.current.longLat)[1] }
+                    r={ 7 }
+                    fill="#E91E63"
+                    className="marker"
+                    />
+                )
+            }
+
         } else return null
     }
 }
