@@ -13,21 +13,29 @@ class Marker extends Component {
           .scale(100)
           .translate([ 800 / 2, 450 / 2 ])
     }
-    selectedProjection = this.props.selectedProjection;
-    // need a way to dynamically select different projections
-    //  can't call method by name from props
-    //  perhaps projection() can be called from props; investigate dynamic dispatch
     render() {
         if(this.props.current.loaded){
-            return (
-            <circle
-            cx={ this.projectionConic()(this.props.current.longLat)[0] }
-            cy={ this.projectionConic()(this.props.current.longLat)[1] }
-            r={ 7 }
-            fill="#E91E63"
-            className="marker"
-            />
-            )
+            if (this.props.selectedProjection === "geoHill"){
+                return (
+                <circle
+                cx={ this.projectionHill()(this.props.current.longLat)[0] }
+                cy={ this.projectionHill()(this.props.current.longLat)[1] }
+                r={ 7 }
+                fill="#E91E63"
+                className="marker"
+                />
+                )
+            } else {
+                return (
+                    <circle
+                    cx={ this.projectionConic()(this.props.current.longLat)[0] }
+                    cy={ this.projectionConic()(this.props.current.longLat)[1] }
+                    r={ 7 }
+                    fill="#E91E63"
+                    className="marker"
+                    />
+                    )
+            }
         } else return null
     }
 }

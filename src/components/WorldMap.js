@@ -18,22 +18,17 @@ class WorldMap extends Component {
     componentDidMount() {
         this.props.getMap();
     }
-    selectedProjection = this.props.selectedProjection;
     render() {
-        return (
+        if (this.props.selectedProjection === "geoHill") {
+            console.log("hill proj: "+this.props.selectedProjection);
+            return (
             <div>
                 <Button
                     color="light"
-                    onClick={ () => {return this.props.changeProjection("geoConicEqualArea")} }
-                >
-                    Conic Projection
-                </Button>
-                <Button
-                    color="light"
                     onClick={ () => {
-                        return this.props.changeProjection("geoHill")} }
+                        return this.props.changeProjection("geoConicEqualArea")} }
                 >
-                    Hill Projection
+                    Change to Conic Projection
                 </Button>
                 <Button
                     color="light"
@@ -42,26 +37,64 @@ class WorldMap extends Component {
                     Update Position
                 </Button>
                 <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
-                <g className="countries">
-                {
-                    this.props.worldData.map((d,i) => (
-                    <path
-                        key={ `path-${ i }` }
-                        d={ geoPath().projection(this.projectionConic())(d) }
-                        className="country"
-                        fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
-                        stroke="#FFFFFF"
-                        strokeWidth={ 0.5 }
-                    />
-                    ))
-                }
-                </g>
-                <g className="markers">
-                <MarkerContainer />
-                </g>
+                    <g className="countries">
+                    {
+                        this.props.worldData.map((d,i) => (
+                        <path
+                            key={ `path-${ i }` }
+                            d={ geoPath().projection(this.projectionHill())(d) }
+                            className="country"
+                            fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
+                            stroke="#FFFFFF"
+                            strokeWidth={ 0.5 }
+                        />
+                        ))
+                    }
+                    </g>
+                    <g className="markers">
+                    <MarkerContainer />
+                    </g>
                 </svg>
             </div>
         )
+        } else {
+            console.log("cone proj: "+this.props.selectedProjection);
+            return (
+                <div>
+                    <Button
+                        color="light"
+                        onClick={ () => {return this.props.changeProjection("geoHill")} }
+                    >
+                        Change to Hill Projection
+                    </Button>
+                    <Button
+                        color="light"
+                        onClick={ () => {return this.props.getCoords()} }
+                    >
+                        Update Position
+                    </Button>
+                    <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
+                        <g className="countries">
+                        {
+                            this.props.worldData.map((d,i) => (
+                            <path
+                                key={ `path-${ i }` }
+                                d={ geoPath().projection(this.projectionConic())(d) }
+                                className="country"
+                                fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
+                                stroke="#FFFFFF"
+                                strokeWidth={ 0.5 }
+                            />
+                            ))
+                        }
+                        </g>
+                        <g className="markers">
+                        <MarkerContainer />
+                        </g>
+                    </svg>
+                </div>
+            )
+        }
     }
 }
 
