@@ -1,7 +1,7 @@
 export default {
     currentCoords: {},
     worldData: [],
-    selectedProjection: "",
+    selectedProjection: "geoMercator",
     flyover: {},
     inputLat: "",
     inputLong: "",
