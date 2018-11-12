@@ -126,7 +126,6 @@ function currentLoaded(coords) {
 }
 
 export function changeProjection(projection) {
-    console.log("action reads projection as: "+projection);
     return {
         type: 'PROJECTION_CHANGED',
         value: projection

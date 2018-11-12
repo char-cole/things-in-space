@@ -2,6 +2,11 @@ export default {
     currentCoords: {},
     worldData: [],
     selectedProjection: "geoMercator",
+    allProjections: [
+        "geoHill",
+        "geoMercator",
+        "geoConicEqualArea"
+    ],
     flyover: {},
     inputLat: "",
     inputLong: "",

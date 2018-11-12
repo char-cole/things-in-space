@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { geoConicEqualArea, geoMercator, geoPath, geoGraticule } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
+import ChangeProjectionButtonsContainer from "../containers/ChangeProjectionButtonsContainer"
 import { Button } from 'reactstrap';
 
 class WorldMap extends Component {
@@ -35,32 +36,7 @@ class WorldMap extends Component {
 
                 {/* Bootstrap buttons to change state.seletedProjection */}
 
-                <Button
-                    color="light"
-                    onClick={ () => {
-                        return this.props.changeProjection("geoConicEqualArea")} }
-                >
-                    Change to Conic Equal-Area Projection
-                </Button>
-                <Button
-                    color="light"
-                    onClick={ () => {return this.props.changeProjection("geoHill")} }
-                >
-                    Change to Hill Projection
-                </Button>
-                <Button
-                    color="light"
-                    onClick={ () => {
-                        return this.props.changeProjection("geoMercator")} }
-                >
-                    Change to Mercator Projection
-                </Button>
-                <Button
-                    color="light"
-                    onClick={ () => {return this.props.getCoords()} }
-                >
-                    Update Position
-                </Button>
+                <ChangeProjectionButtonsContainer/>
 
                 {/* SVG object to render countries, graticule (missing), and markers */}
 

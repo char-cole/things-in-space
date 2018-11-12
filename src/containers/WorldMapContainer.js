@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import WorldMap from "../components/WorldMap";
-import { getMap, loadCurrent, changeProjection } from "../actions";
+import { getMap } from "../actions";
 
 const mapStateToProps = (state) => ({
     worldData: state.worldData,
@@ -12,12 +12,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getMap: () => {
         dispatch(getMap())
-    },
-    getCoords: () => {
-        dispatch(loadCurrent())
-    },
-    changeProjection: (projection) => {
-        dispatch(changeProjection(projection))
     }
 });
 

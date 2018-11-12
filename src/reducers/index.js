@@ -44,14 +44,17 @@ function currentCoords(state={}, action) {
 
 function selectedProjection(state="geoMercator", action) {
     if (action.type === "PROJECTION_CHANGED") {
-        console.log("reducer reads the following projection: "+action.value)
         return action.value;
     }
     return state;
 }
 
+function allProjections(state=[], action) {
+    return state;
+}
+
 const rootReducer = combineReducers({
-    flyover, inputLat, inputLong, buttons, worldData, currentCoords, selectedProjection
+    flyover, inputLat, inputLong, buttons, worldData, currentCoords, selectedProjection, allProjections
 });
 
 export default rootReducer;
