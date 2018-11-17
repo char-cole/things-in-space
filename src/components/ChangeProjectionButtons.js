@@ -8,7 +8,7 @@ const ChangeProjectionButtons = (props) => {
             return (
                 <div key={i}>
                     <Button
-                        color="light"
+                        color="secondary"
                         onClick={ () => {
                         return props.changeProjection(x)} }
                     >
@@ -22,14 +22,6 @@ const ChangeProjectionButtons = (props) => {
     return (
         <div>
             {buttonDivs}
-            {
-                <Button
-                    color="light"
-                    onClick={ () => {return props.loadCurrent()} }
-                >
-                    Update Position
-                </Button>
-            }
         </div>
     )
 }

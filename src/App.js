@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+// import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LocationButtonsContainer from "./containers/LocationButtonsContainer";
 import StationTrackerContainer from './containers/StationTrackerContainer';
+import ChangeProjectionButtonsContainer from './containers/ChangeProjectionButtonsContainer';
 import WorldMapContainer from './containers/WorldMapContainer';
+import UpdatePositionButtonContainer from './containers/UpdatePositionButtonContainer';
 import InfoList from './components/InfoList';
-import {
-  Container,
-  Row,
-  Col
-} from 'reactstrap';
 
 class App extends Component {
 
@@ -19,15 +16,22 @@ class App extends Component {
         <header >
           <h1>The International Space Station</h1>
         </header>
-        <div >
-          <WorldMapContainer/>
-          <InfoList/>
+        <div className="grid-container mapThings">
+          <div className="leftButtons">
+          <ChangeProjectionButtonsContainer />
+          </div>
+          <div className="centerButton">
+          <UpdatePositionButtonContainer />
+          </div>
+          <div className="centerMap">
+          <WorldMapContainer />
+          </div>
+          <div className="rightButtons">
+          <LocationButtonsContainer />
+          </div>
         </div>
-        <div >
-          <h2>Enter your coordinates,<br/>or select from these locations!</h2>
-          <LocationButtonsContainer/>
-          <StationTrackerContainer />
-        </div>
+        <StationTrackerContainer className="rightTracker"/>
+        <InfoList/>
       </div>
   );
   }

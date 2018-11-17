@@ -2,13 +2,12 @@ import React, { Component } from "react"
 import { geoConicEqualArea, geoMercator, geoPath, geoGraticule } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
-import ChangeProjectionButtonsContainer from "../containers/ChangeProjectionButtonsContainer"
-import { Button } from 'reactstrap';
 
 class WorldMap extends Component {
-    // geoGraticule10() {
-    //     return geoGraticule()();
-    // }
+
+    graticule(projection) {
+        geoPath().projection(projection)(geoGraticule().step([10,10])())
+    }
 
     projection() {
         if (this.props.selectedProjection === "geoHill") {
@@ -27,20 +26,27 @@ class WorldMap extends Component {
             .translate([ 800 / 2, 450 / 2 ])
         }
     }
+
     componentDidMount() {
         this.props.getMap();
     }
+    
     render() {
+
         return (
             <div>
-
-                {/* Bootstrap buttons to change state.seletedProjection */}
-
-                <ChangeProjectionButtonsContainer/>
 
                 {/* SVG object to render countries, graticule (missing), and markers */}
 
                 <svg width={ 800 } height={ 450 } viewBox="0 0 800 450">
+
+                    {/* <g className="graticule">
+                        <path
+                            d={ this.graticule(this.projection) }
+                            stroke="#efefef"
+                            strokeWidth={0.3}
+                        />
+                    </g> */}
 
                     <g className="countries">
                     {
@@ -62,6 +68,7 @@ class WorldMap extends Component {
                     </g>
 
                 </svg>
+
             </div>
         )
     }

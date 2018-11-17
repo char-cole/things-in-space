@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ChangeProjectionButtons from "../components/ChangeProjectionButtons";
-import { changeProjection, loadCurrent } from "../actions";
+import { changeProjection } from "../actions";
 
 const mapStateToProps = (state) => ({
     selectedProjection: state.selectedProjection,
@@ -10,9 +10,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     changeProjection: (projection) => {
         dispatch(changeProjection(projection))
-    },
-    loadCurrent: (projection) => {
-        dispatch(loadCurrent(projection))
     }
 })
 

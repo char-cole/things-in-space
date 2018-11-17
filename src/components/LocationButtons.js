@@ -10,7 +10,7 @@ const LocationButtons = (props) => {
             <div className="grid-item" key={index}>
                 <Button
                     className="locButton"
-                    color="light"
+                    color="secondary"
                     onClick={()=> {return props.loadFlyover(item.lat,item.long)}}
                     >{item.name},<br/>{item.country}
                 </Button>

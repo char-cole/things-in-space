@@ -4,8 +4,6 @@ import { getMap } from "../actions";
 
 const mapStateToProps = (state) => ({
     worldData: state.worldData,
-    currentCoords: state.currentCoords,
-    flyover: state.flyover,
     selectedProjection: state.selectedProjection
 });
 

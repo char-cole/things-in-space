@@ -2,7 +2,7 @@ import React from 'react';
 
 const InfoList = () => {
     return (
-    <div style={{width: "100%"}}>
+    <div style={{width: "100%", color: "white"}}>
         <ul style={{listStyle:"none", padding:"10px"}}>
         <li>The ISS is orbiting the Earth at about 4.76 miles per second, or over 17,000 mph.</li>
 

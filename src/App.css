@@ -37,10 +37,7 @@ h2 {
 .grid-container {
   color: white;
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  width: 90%;
-  margin: 10px 40px;
+  margin: 10px 20px;
 }
 
 .grid-item {
@@ -48,45 +45,64 @@ h2 {
   text-align: center;
 }
 
-.left {
-  grid-area: left;
-  padding: 10px 10%;
-}
-
-.right {
-  grid-area: right;
-  padding: 10px 10px;
-}
-
-.full {
-  width: 100%;
-}
-
 .locButton {
   margin: 10px;
   min-width: 130px;
-}
-
-.trackerContainer {
-  grid-template-areas:
-  "input button"
-  "output ouput"
 }
 
 .coordinates {
   margin: 5px;
   display: flex;
   flex-direction: column;
-  grid-area: input;
-}
-
-.updateButton {
-  max-height: 40px;
-  align-self: center;
-  grid-area: button;
 }
 
 .wide {
   justify-self: center;
-  grid-area: output;
+}
+
+.mapThings {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 40px 500px;
+}
+
+.leftButtons {
+  grid-column: 1;
+  grid-row: 1 / 2;
+  justify-self: center;
+}
+
+.centerButton {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: center;
+}
+
+.centerMap {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+.rightButtons {
+  grid-column: 5;
+  grid-row: 1 / 2;
+}
+
+.stationTrackerGrid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.manualCoordInput {
+  grid-column: 1;
+  grid-row: 1;
+  align-items: center;
+}
+
+.manualCoordInput div {
+  justify-self: center
+}
+
+.flyoverDisplay {
+  grid-column: 2 / 4;
+  grid-row: 1;
 }
