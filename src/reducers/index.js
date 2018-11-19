@@ -42,7 +42,7 @@ function currentCoords(state={}, action) {
     return state;
 }
 
-function selectedProjection(state="geoMercator", action) {
+function selectedProjection(state=["geoMercator", "Mercator"], action) {
     if (action.type === "PROJECTION_CHANGED") {
         return action.value;
     }

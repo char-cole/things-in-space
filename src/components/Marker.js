@@ -3,7 +3,7 @@ import { geoConicEqualArea, geoNaturalEarth1, geoMercator, geoConicEquidistant, 
 import { geoHill } from "d3-geo-projection"
 
 class Marker extends Component {
-    projection() {
+    projection(projection) {
         let projObj = {
            "geoHill": () => {
                 return geoHill()
@@ -46,14 +46,14 @@ class Marker extends Component {
                 .translate([ 800 / 2, 450 / 2 ]);
             },
         }
-        return projObj[this.props.selectedProjection]()
+        return projObj[projection]()
     }
     render() {
         if(this.props.current.loaded){
                 return (
                     <circle
-                    cx={ this.projection()(this.props.current.longLat)[0] }
-                    cy={ this.projection()(this.props.current.longLat)[1] }
+                    cx={ this.projection(this.props.selectedProjection[0])(this.props.current.longLat)[0] }
+                    cy={ this.projection(this.props.selectedProjection[0])(this.props.current.longLat)[1] }
                     r={ 7 }
                     fill="#E91E63"
                     className="marker"

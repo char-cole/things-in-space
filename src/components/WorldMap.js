@@ -89,7 +89,7 @@ class WorldMap extends Component {
                         this.props.worldData.map((d,i) => (
                         <path
                             key={ `path-${ i }` }
-                            d={ geoPath().projection(this.projection(this.props.selectedProjection))(d) }
+                            d={ geoPath().projection(this.projection(this.props.selectedProjection[0]))(d) }
                             className="country"
                             fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
                             stroke="#FFFFFF"
