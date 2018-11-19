@@ -45,6 +45,10 @@ h2 {
   text-align: center;
 }
 
+.projectionButtons {
+  margin: 10px;
+}
+
 .locButton {
   margin: 10px;
   min-width: 130px;

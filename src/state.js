@@ -3,9 +3,13 @@ export default {
     worldData: [],
     selectedProjection: "geoMercator",
     allProjections: [
-        "geoHill",
         "geoMercator",
-        "geoConicEqualArea"
+        "geoHill",
+        "geoNaturalEarth1",
+        "geoAzimuthalEqualArea",
+        "geoOrthographic",
+        "geoConicEqualArea",
+        "geoConicEquidistant",
     ],
     flyover: {},
     inputLat: "",

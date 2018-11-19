@@ -1,59 +1,64 @@
 import React, {Component} from 'react';
-import { geoConicEqualArea, geoMercator } from "d3-geo"
+import { geoConicEqualArea, geoNaturalEarth1, geoMercator, geoConicEquidistant, geoAzimuthalEqualArea, geoOrthographic } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 
 class Marker extends Component {
-    projectionConic() {
-        return geoConicEqualArea()
-          .scale(100)
-          .translate([ 800 / 2, 450 / 2 ])
-     }
-     projectionHill() {
-        return geoHill()
-          .scale(100)
-          .translate([ 800 / 2, 450 / 2 ])
-    }
-    projectionMercator() {
-        return geoMercator()
-          .scale(100)
-          .translate([ 800 / 2, 450 / 2 ])
+    projection() {
+        let projObj = {
+           "geoHill": () => {
+                return geoHill()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+           },
+           "geoOrthographic": () => {
+                return geoOrthographic()
+                .scale(200)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoNaturalEarth1": () => {
+                return geoNaturalEarth1()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoAzimuthalEqualArea": () => {
+                return geoAzimuthalEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEqualArea": () => {
+                return geoConicEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEqualArea": () => {
+                return geoConicEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEquidistant": () => {
+                return geoConicEquidistant()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoMercator": () => {
+                return geoMercator()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+        }
+        return projObj[this.props.selectedProjection]()
     }
     render() {
         if(this.props.current.loaded){
-            if (this.props.selectedProjection === "geoHill") {
                 return (
                     <circle
-                    cx={ this.projectionHill()(this.props.current.longLat)[0] }
-                    cy={ this.projectionHill()(this.props.current.longLat)[1] }
+                    cx={ this.projection()(this.props.current.longLat)[0] }
+                    cy={ this.projection()(this.props.current.longLat)[1] }
                     r={ 7 }
                     fill="#E91E63"
                     className="marker"
                     />
                 )
-            }
-            if (this.props.selectedProjection === "geoConicEqualArea") {
-                return (
-                    <circle
-                    cx={ this.projectionConic()(this.props.current.longLat)[0] }
-                    cy={ this.projectionConic()(this.props.current.longLat)[1] }
-                    r={ 7 }
-                    fill="#E91E63"
-                    className="marker"
-                    />
-                )
-            }
-            {
-                return (
-                    <circle
-                    cx={ this.projectionMercator()(this.props.current.longLat)[0] }
-                    cy={ this.projectionMercator()(this.props.current.longLat)[1] }
-                    r={ 7 }
-                    fill="#E91E63"
-                    className="marker"
-                    />
-                )
-            }
-
         } else return null
     }
 }

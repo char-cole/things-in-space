@@ -1,5 +1,13 @@
 import React, { Component } from "react"
-import { geoConicEqualArea, geoMercator, geoPath, geoGraticule } from "d3-geo"
+import {
+    geoConicEqualArea,
+    geoConicEquidistant,
+    geoMercator,
+    geoNaturalEarth1,
+    geoAzimuthalEqualArea, 
+    geoOrthographic,
+    geoPath, 
+    geoGraticule } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
 
@@ -9,22 +17,50 @@ class WorldMap extends Component {
         geoPath().projection(projection)(geoGraticule().step([10,10])())
     }
 
-    projection() {
-        if (this.props.selectedProjection === "geoHill") {
-            return geoHill()
-            .scale(100)
-            .translate([ 800 / 2, 450 / 2 ])
+    projection(projection) {
+        let projObj = {
+           "geoHill": () => {
+                return geoHill()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+           },
+           "geoOrthographic": () => {
+                return geoOrthographic()
+                .scale(200)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoNaturalEarth1": () => {
+                return geoNaturalEarth1()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoAzimuthalEqualArea": () => {
+                return geoAzimuthalEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEqualArea": () => {
+                return geoConicEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEqualArea": () => {
+                return geoConicEqualArea()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoConicEquidistant": () => {
+                return geoConicEquidistant()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
+            "geoMercator": () => {
+                return geoMercator()
+                .scale(100)
+                .translate([ 800 / 2, 450 / 2 ]);
+            },
         }
-        if (this.props.selectedProjection === "geoConicEqualArea") {
-            return geoConicEqualArea()
-            .scale(100)
-            .translate([ 800 / 2, 450 / 2 ])
-        }
-        if (this.props.selectedProjection === "geoMercator") {
-            return geoMercator()
-            .scale(100)
-            .translate([ 800 / 2, 450 / 2 ])
-        }
+        return projObj[projection]()
     }
 
     componentDidMount() {
@@ -53,7 +89,7 @@ class WorldMap extends Component {
                         this.props.worldData.map((d,i) => (
                         <path
                             key={ `path-${ i }` }
-                            d={ geoPath().projection(this.projection())(d) }
+                            d={ geoPath().projection(this.projection(this.props.selectedProjection))(d) }
                             className="country"
                             fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
                             stroke="#FFFFFF"

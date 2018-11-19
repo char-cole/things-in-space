@@ -8,6 +8,7 @@ const ChangeProjectionButtons = (props) => {
             return (
                 <div key={i}>
                     <Button
+                        className="projectionButtons"
                         color="secondary"
                         onClick={ () => {
                         return props.changeProjection(x)} }
