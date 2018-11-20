@@ -3,7 +3,7 @@ import { Button } from 'reactstrap';
 
 const ChangeProjectionButtons = (props) => {
     let buttonDivs = props.allProjections.map( (x, i) => {
-        if (x[0] != props.selectedProjection[0]) {
+        if (x.geo != props.selectedProjection.geo) {
             return (
                 <div key={i}>
                     <Button
@@ -12,7 +12,7 @@ const ChangeProjectionButtons = (props) => {
                         onClick={ () => {
                         return props.changeProjection(x)} }
                     >
-                        Change to {x[1]}
+                        Change to {x.name}
                     </Button>
                 </div>
             )

@@ -1,15 +1,42 @@
 export default {
-    currentCoords: {},
+    current: {},
     worldData: [],
-    selectedProjection: ["geoMercator", "Mercator"],
+    selectedProjection: {
+        "geo": "geoMercator",
+        "name": "Mercator",
+        "desc": "A common projection, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes navigation easy, but makes land closer to the poles look much bigger than it is!"
+    },
     allProjections: [
-        ["geoMercator", "Mercator"],
-        ["geoHill", "Hill"],
-        ["geoNaturalEarth1", "Natural Earth"],
-        ["geoAzimuthalEqualArea", "Azimuthal (Equal Area)"],
-        ["geoOrthographic", "Orthographic"],
-        ["geoConicEqualArea", "Conic (Equal Area)"],
-        ["geoConicEquidistant", "Conic (Equidistant)"],
+        {
+            "geo": "geoMercator",
+            "name": "Mercator",
+            "desc": "A very common projection, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes the map useful for navigation, but greatly distorts distance closer to the poles!"
+        },
+        {
+            "geo": "geoNaturalEarth1",
+            "name": "Natural Earth",
+            "desc": "A projection design in 2012 by Tom Patterson. Directions and sizes are slightly distorted to create a map that is easy to look at and keeps sizes fairly accurate.",
+        },
+        {
+            "geo": "geoHill",
+            "name": "Hill Eucyclic",
+            "desc": "A kidney-shaped projection made by Karl Hill in 1958. This projection is equal-area, meaning the size of each country is accurate, but shapes are distorted."
+        },
+        {
+            "geo": "geoAzimuthalEqualArea",
+            "name": "Azimuthal (Equal Area)",
+            "desc": "Azimuthal projections keep accurate azimuth, meaning direction from the center of the projection. This projection is equal-area and is centered on the north pole. The south pole is the entire outer edge!"
+        },
+        {
+            "geo": "geoOrthographic",
+            "name": "Orthographic",
+            "desc": "Orthographic projections can only show half of a sphere at once. Distance is distorted near the edges, making the Earth appear as it would from space. This map rotates to keep the ISS near the center so its location can always be easily seen."
+        },
+        {
+            "geo": "geoConicEqualArea",
+            "name": "Conic (Equal Area)",
+            "desc": "Conic projections are made as if placing a cone over the Earth, then projecting an image of the Earth onto that cone, and then flattening it out. Here the cone is centered on the north pole, and land in the southern hemisphere is greatly stretched, because the entire outer edge is the south pole."
+        },
     ],
     flyover: {},
     inputLat: "",

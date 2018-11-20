@@ -6,6 +6,7 @@ import StationTrackerContainer from './containers/StationTrackerContainer';
 import ChangeProjectionButtonsContainer from './containers/ChangeProjectionButtonsContainer';
 import WorldMapContainer from './containers/WorldMapContainer';
 import UpdatePositionButtonContainer from './containers/UpdatePositionButtonContainer';
+import ProjectionInfoContainer from './containers/ProjectionInfoContainer';
 import InfoList from './components/InfoList';
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
           <h1>The International Space Station</h1>
         </header>
         <div className="grid-container mapThings">
-          <div className="leftButtons">
+          <div className="leftItems">
+          <ProjectionInfoContainer />
           <ChangeProjectionButtonsContainer />
           </div>
           <div className="centerButton">
@@ -31,7 +33,7 @@ class App extends Component {
           </div>
         </div>
         <StationTrackerContainer className="rightTracker"/>
-        <InfoList/>
+        {/* <InfoList/> */}
       </div>
   );
   }

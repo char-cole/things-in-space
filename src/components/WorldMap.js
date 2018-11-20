@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import {
     geoConicEqualArea,
-    geoConicEquidistant,
     geoMercator,
     geoNaturalEarth1,
     geoAzimuthalEqualArea, 
@@ -18,6 +17,14 @@ class WorldMap extends Component {
     }
 
     projection(projection) {
+        let rotation = (r) => {
+            if (r[0]) {
+                if (r[0] < -45) return [90,0]
+                if (r[0] > 45 && r[0] < 135) return [-90,0]
+                if (r[0] >= 135) return [-180,0]
+                else return [0,0]
+            } else return [0,0]
+        }
         let projObj = {
            "geoHill": () => {
                 return geoHill()
@@ -27,7 +34,8 @@ class WorldMap extends Component {
            "geoOrthographic": () => {
                 return geoOrthographic()
                 .scale(200)
-                .translate([ 800 / 2, 450 / 2 ]);
+                .translate([ 800 / 2, 450 / 2 ])
+                .rotate(rotation(this.props.current.longLat || [0,0]));
             },
             "geoNaturalEarth1": () => {
                 return geoNaturalEarth1()
@@ -37,7 +45,8 @@ class WorldMap extends Component {
             "geoAzimuthalEqualArea": () => {
                 return geoAzimuthalEqualArea()
                 .scale(100)
-                .translate([ 800 / 2, 450 / 2 ]);
+                .translate([ 800 / 2, 450 / 2 ])
+                .rotate([0,-90]);
             },
             "geoConicEqualArea": () => {
                 return geoConicEqualArea()
@@ -46,11 +55,6 @@ class WorldMap extends Component {
             },
             "geoConicEqualArea": () => {
                 return geoConicEqualArea()
-                .scale(100)
-                .translate([ 800 / 2, 450 / 2 ]);
-            },
-            "geoConicEquidistant": () => {
-                return geoConicEquidistant()
                 .scale(100)
                 .translate([ 800 / 2, 450 / 2 ]);
             },
@@ -89,7 +93,7 @@ class WorldMap extends Component {
                         this.props.worldData.map((d,i) => (
                         <path
                             key={ `path-${ i }` }
-                            d={ geoPath().projection(this.projection(this.props.selectedProjection[0]))(d) }
+                            d={ geoPath().projection(this.projection(this.props.selectedProjection.geo))(d) }
                             className="country"
                             fill={ `rgba(38,250,56,${1 / this.props.worldData.length * i + .1})` }
                             stroke="#FFFFFF"

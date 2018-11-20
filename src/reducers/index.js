@@ -35,7 +35,7 @@ function worldData(state=[], action) {
     return state;
 }
 
-function currentCoords(state={}, action) {
+function current(state={}, action) {
     if (action.type === "CURRENT_LOADED") {
         return action.value;
     }
@@ -54,7 +54,7 @@ function allProjections(state=[], action) {
 }
 
 const rootReducer = combineReducers({
-    flyover, inputLat, inputLong, buttons, worldData, currentCoords, selectedProjection, allProjections
+    flyover, inputLat, inputLong, buttons, worldData, current, selectedProjection, allProjections
 });
 
 export default rootReducer;

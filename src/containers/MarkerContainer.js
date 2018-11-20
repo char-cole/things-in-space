@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Marker from "../components/Marker";
 
 const mapStateToProps = (state) => ({
-    current: state.currentCoords,
+    current: state.current,
     selectedProjection: state.selectedProjection
 });
 
