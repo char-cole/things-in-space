@@ -53,8 +53,12 @@ function allProjections(state=[], action) {
     return state;
 }
 
+function cities(state=[], action) {
+    return state;
+}
+
 const rootReducer = combineReducers({
-    flyover, inputLat, inputLong, buttons, worldData, current, selectedProjection, allProjections
+    flyover, inputLat, inputLong, buttons, worldData, current, selectedProjection, allProjections, cities
 });
 
 export default rootReducer;

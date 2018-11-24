@@ -9,6 +9,7 @@ import {
     geoGraticule } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
+import CityMarkerContainer from "../containers/CityMarkerContainer";
 
 class WorldMap extends Component {
 
@@ -47,11 +48,6 @@ class WorldMap extends Component {
                 .scale(100)
                 .translate([ 800 / 2, 450 / 2 ])
                 .rotate([0,-90]);
-            },
-            "geoConicEqualArea": () => {
-                return geoConicEqualArea()
-                .scale(100)
-                .translate([ 800 / 2, 450 / 2 ]);
             },
             "geoConicEqualArea": () => {
                 return geoConicEqualArea()
@@ -104,6 +100,7 @@ class WorldMap extends Component {
                     </g>
 
                     <g className="markers">
+                    <CityMarkerContainer />
                     <MarkerContainer />
                     </g>
 

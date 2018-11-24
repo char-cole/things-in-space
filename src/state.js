@@ -43,10 +43,22 @@ export default {
     inputLong: "",
     buttons: [
         {
-            name: "New York",
-            lat: 40.7127,
-            long: -74.0059,
-            country: "USA"
+            name: "São Paulo",
+            lat: -23.55,
+            long: -46.633333,
+            country: "Brazil"
+        },
+        {
+            name: "Lagos",
+            lat: 6.455027,
+            long: 3.384082,
+            country: "Nigeria"
+        },
+        {
+            name: "Dhaka",
+            lat: 23.7,
+            long: 90.366667,
+            country: "Bangladesh"
         },
         {
             name: "Beijing",
@@ -55,10 +67,10 @@ export default {
             country: "China"
         },
         {
-            name: "São Paulo",
-            lat: -23.55,
-            long: -46.633333,
-            country: "Brazil"
+            name: "New York",
+            lat: 40.7127,
+            long: -74.0059,
+            country: "USA"
         },
         {
             name: "Moscow",
@@ -66,17 +78,5 @@ export default {
             long: 37.616667,
             country: "Russia"
         },
-        {
-            name: "Buenos Aires",
-            lat: -34.603333,
-            long: -58.381667,
-            country: "Argentina"
-        },
-        {
-            name: "Dhaka",
-            lat: 23.7,
-            long: 90.366667,
-            country: "Bangladesh"
-        }
     ]
 }

@@ -40,11 +40,6 @@ class Marker extends Component {
                 .scale(100)
                 .translate([ 800 / 2, 450 / 2 ]);
             },
-            "geoConicEqualArea": () => {
-                return geoConicEqualArea()
-                .scale(100)
-                .translate([ 800 / 2, 450 / 2 ]);
-            },
             "geoMercator": () => {
                 return geoMercator()
                 .scale(100)
