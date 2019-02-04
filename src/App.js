@@ -13,26 +13,27 @@ class App extends Component {
 
   render() {
     return (
-      <div  >
-        <header >
-          <h1>The International Space Station</h1>
-        </header>
-        <div className="grid-container mapThings">
-          <div className="leftItems">
-          <ProjectionInfoContainer />
-          <ChangeProjectionButtonsContainer />
-          </div>
-          <div className="centerButton">
-          <UpdatePositionButtonContainer />
-          </div>
-          <div className="centerMap">
-          <WorldMapContainer />
-          </div>
-          <div className="rightButtons">
-          <LocationButtonsContainer />
-          </div>
+      <div className="container" >
+        <div className="row">
+          <h2 className="text-white px-5 py-2">
+            Simply click on the map to begin tracking the
+            International Space Station
+          </h2>
         </div>
-        <StationTrackerContainer className="rightTracker"/>
+        <div className="row">
+          <div className="col-12 col-md-3">
+            <ProjectionInfoContainer />
+            <ChangeProjectionButtonsContainer />
+          </div>
+          <div className="col-12 col-md-9">
+            {/* <UpdatePositionButtonContainer /> */}
+            <WorldMapContainer />
+          </div>
+          {/* <div className="rightButtons">
+          <LocationButtonsContainer />
+          </div> */}
+        </div>
+        <StationTrackerContainer className=""/>
         {/* <InfoList/> */}
       </div>
   );

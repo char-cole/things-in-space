@@ -30,10 +30,6 @@ header {
   padding: 20px auto;
 }
 
-h2 {
-  font-size: .9em
-}
-
 .grid-container {
   color: white;
   display: grid;
@@ -64,32 +60,10 @@ h2 {
   justify-self: center;
 }
 
-.mapThings {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 40px 500px;
+.container {
+  flex-direction: column;
 }
 
-.leftItems {
-  grid-column: 1;
-  grid-row: 1 / 2;
-  justify-self: center;
-}
-
-.centerButton {
-  grid-column: 3;
-  grid-row: 1;
-  justify-self: center;
-}
-
-.centerMap {
-  grid-column: 2 / 4;
-  grid-row: 2;
-}
-
-.rightButtons {
-  grid-column: 5;
-  grid-row: 1 / 2;
-}
 
 .stationTrackerGrid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -109,8 +83,4 @@ h2 {
 .flyoverDisplay {
   grid-column: 2 / 4;
   grid-row: 1;
-}
-
-.smallText {
-  font-size: .9em;
 }

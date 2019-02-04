@@ -3,9 +3,9 @@ import {
     geoConicEqualArea,
     geoMercator,
     geoNaturalEarth1,
-    geoAzimuthalEqualArea, 
+    geoAzimuthalEqualArea,
     geoOrthographic,
-    geoPath, 
+    geoPath,
     geoGraticule } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 import MarkerContainer from "../containers/MarkerContainer"
@@ -66,11 +66,11 @@ class WorldMap extends Component {
     componentDidMount() {
         this.props.getMap();
     }
-    
+
     render() {
 
         return (
-            <div>
+            <div onClick={ () => {return this.props.loadCurrent()} } >
 
                 {/* SVG object to render countries, graticule (missing), and markers */}
 

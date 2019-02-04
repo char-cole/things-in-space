@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import WorldMap from "../components/WorldMap";
-import { getMap } from "../actions";
+import { getMap, loadCurrent } from "../actions";
 
 const mapStateToProps = (state) => ({
     worldData: state.worldData,
@@ -11,6 +11,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getMap: () => {
         dispatch(getMap())
+    },
+    loadCurrent: () => {
+        dispatch(loadCurrent())
     }
 });
 

@@ -42,7 +42,7 @@ function current(state={}, action) {
     return state;
 }
 
-function selectedProjection(state=["geoMercator", "Mercator"], action) {
+function selectedProjection(state={}, action) {
     if (action.type === "PROJECTION_CHANGED") {
         return action.value;
     }

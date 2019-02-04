@@ -1,17 +1,15 @@
 import React from "react"
-import { Button } from 'reactstrap';
 
 const UpdatePositionButton = (props) => {
     return (
         <div>
             {
-                <Button
-                    color="primary"
-                    // className="btn-block"
+                <button
+                    className="btn btn-primary"
                     onClick={ () => {return props.loadCurrent()} }
                 >
                     Update Position
-                </Button>
+                </button>
             }
         </div>
     )

@@ -1,10 +1,10 @@
 import React from 'react';
-import { 
-    geoConicEqualArea, 
-    geoNaturalEarth1, 
-    geoMercator, 
-    geoAzimuthalEqualArea, 
-    geoOrthographic 
+import {
+    geoConicEqualArea,
+    geoNaturalEarth1,
+    geoMercator,
+    geoAzimuthalEqualArea,
+    geoOrthographic
 } from "d3-geo"
 import { geoHill } from "d3-geo-projection"
 
@@ -18,7 +18,7 @@ const CityMarker = (props) => {
     } else currentLongLat = [0,0]
 
     let projection = (projection) => {
-        
+
         let rotation = (r) => {
             if (r[0]) {
                 if (r[0] < -45) return [90,0]
@@ -64,13 +64,13 @@ const CityMarker = (props) => {
         }
 
         return projObj[projection]();
-        
+
     }
 
     let cityDivs = props.cities.map( (city, i) => {
 
         let longLat = [city.long,city.lat];
-        
+
         let drawCity = () => {
             return (
                 <circle
@@ -78,13 +78,13 @@ const CityMarker = (props) => {
                     cx={ projection(props.selectedProjection.geo)(longLat)[0] }
                     cy={ projection(props.selectedProjection.geo)(longLat)[1] }
                     r={ 5 }
-                    fill="red"
+                    fill="white"
                     className="marker"
                 />
             )
         }
 
-        if (props.selectedProjection.geo != "geoOrthographic") {
+        if (props.selectedProjection.geo !== "geoOrthographic") {
             return drawCity();
         }
 

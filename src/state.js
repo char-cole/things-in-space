@@ -4,13 +4,13 @@ export default {
     selectedProjection: {
         "geo": "geoMercator",
         "name": "Mercator",
-        "desc": "A common projection, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes navigation easy, but makes land closer to the poles look much bigger than it is!"
+        "desc": "One of the most common projections for general use, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes navigation easy, but makes land closer to the poles look much larger than it really is. Notice the size of Greenland compared to the entire continent of Africa!"
     },
     allProjections: [
         {
             "geo": "geoMercator",
             "name": "Mercator",
-            "desc": "A very common projection, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes the map useful for navigation, but greatly distorts distance closer to the poles!"
+            "desc": "One of the most common projections for general use, created in 1569 by Gerardus Mercator. All lines of latitude and longitude are straight. This makes navigation easy, but makes land closer to the poles look much larger than it really is. Notice the size of Greenland compared to the entire continent of Africa!"
         },
         {
             "geo": "geoNaturalEarth1",
@@ -20,22 +20,22 @@ export default {
         {
             "geo": "geoHill",
             "name": "Hill Eucyclic",
-            "desc": "A kidney-shaped projection made by Karl Hill in 1958. This projection is equal-area, meaning the size of each country is accurate, but shapes are distorted."
+            "desc": "A kidney-shaped projection made by Karl Hill in 1958. This projection is equal-area, meaning the size of each country is accurate, but shapes are distorted. Notice how small Greenland actually is compared to Africa!"
         },
         {
             "geo": "geoAzimuthalEqualArea",
             "name": "Azimuthal (Equal Area)",
-            "desc": "Azimuthal projections keep accurate azimuth, meaning direction from the center of the projection. This projection is equal-area and is centered on the north pole. The south pole is the entire outer edge!"
+            "desc": "Azimuthal projections keep accurate azimuth, meaning direction from the center of the projection. In this projection, the center is the north pole. The south pole is drsatically stretched out around the entire outer edge!"
         },
         {
             "geo": "geoOrthographic",
             "name": "Orthographic",
-            "desc": "Orthographic projections can only show half of a sphere at once. Distance is distorted near the edges, making the Earth appear as it would from space. This map rotates to keep the ISS near the center so its location can always be easily seen."
+            "desc": "Orthographic projections greatly distort distance as one moves away from the center point, completely cutting off the porjection 180 degrees from the center in all directions. The result appears just as the Earth would if you were in space directly over the center of the projection (in this app, a point on the equator), but can't display the entire Earth at once. This app rotates the projection to ensure the location of this ISS is always displayed near the center."
         },
         {
             "geo": "geoConicEqualArea",
             "name": "Conic (Equal Area)",
-            "desc": "Conic projections are made as if placing a cone over the Earth, then projecting an image of the Earth onto that cone, and then flattening it out. Here the cone is centered on the north pole, and land in the southern hemisphere is greatly stretched, because the entire outer edge is the south pole."
+            "desc": "Conic projections are shaped like a cone unrolled and laid out flat. Conic proejctions centered on the north pole, as this one is, can be very useful for countries or regions in middle latitudes in the northern hemisphere. However, distance is more distorted near the equator, and in the opposite hemisphere (southern in this app) the projection becomes very difficult to use."
         },
     ],
     flyover: {},
