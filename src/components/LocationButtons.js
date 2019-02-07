@@ -6,7 +6,7 @@ const LocationButtons = (props) => {
 
     let buttonDivs = buttons.map( (item, index) => {
         return (
-            <div className="grid-item" key={index}>
+            <div key={index}>
                 <button
                     className="locButton btn btn-secondary"
                     onClick={()=> {return props.loadFlyover(item.lat,item.long)}}
@@ -17,7 +17,7 @@ const LocationButtons = (props) => {
     });
 
     return (
-        <div className="buttonDiv grid-container">
+        <div  className="d-flex flex-row">
             {buttonDivs}
         </div>
     )

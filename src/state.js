@@ -24,17 +24,17 @@ export default {
         },
         {
             "geo": "geoAzimuthalEqualArea",
-            "name": "Azimuthal (Equal Area)",
+            "name": "Azimuthal",
             "desc": "Azimuthal projections keep accurate azimuth, meaning direction from the center of the projection. In this projection, the center is the north pole. The south pole is drsatically stretched out around the entire outer edge!"
         },
         {
             "geo": "geoOrthographic",
             "name": "Orthographic",
-            "desc": "Orthographic projections greatly distort distance as one moves away from the center point, completely cutting off the porjection 180 degrees from the center in all directions. The result appears just as the Earth would if you were in space directly over the center of the projection (in this app, a point on the equator), but can't display the entire Earth at once. This app rotates the projection to ensure the location of this ISS is always displayed near the center."
+            "desc": "Orthographic projections greatly distort distance as one moves away from the center point, completely cutting off the projection 180 degrees from the center in all directions. The result appears just as the Earth would if the viewer were in space directly over the center of the projection (in this app, a point on the equator), but can't display the entire Earth at once. This app rotates the projection to ensure the location of the ISS is always displayed near the center."
         },
         {
             "geo": "geoConicEqualArea",
-            "name": "Conic (Equal Area)",
+            "name": "Conic",
             "desc": "Conic projections are shaped like a cone unrolled and laid out flat. Conic proejctions centered on the north pole, as this one is, can be very useful for countries or regions in middle latitudes in the northern hemisphere. However, distance is more distorted near the equator, and in the opposite hemisphere (southern in this app) the projection becomes very difficult to use."
         },
     ],

@@ -2,20 +2,20 @@ import React from "react"
 
 const ProjectionInfo = (props) => {
     return (
-        <div style={{margin:"10px"}}>
+        <div>
             <button
-            className="btn btn-outline-light"
+            className="btn btn-block btn-outline-light"
             data-toggle="collapse"
             data-target="#info-collapse">
                 <h4 className="m-0">
                     {props.selectedProjection.name}
-                    <i className="mx-2 fas fa-minus"></i>
+                    <i className="ml-4 fas fa-caret-down"></i>
                 </h4>
             </button>
             <div class="collapse show" id="info-collapse">
-                    <small className="text-white">
-                        {props.selectedProjection.desc}
-                    </small>
+                <small className="text-white px-3 py-2 collapse show">
+                    {props.selectedProjection.desc}
+                </small>
             </div>
         </div>
     )

@@ -4,15 +4,14 @@ const ChangeProjectionButtons = (props) => {
     let buttonDivs = props.allProjections.map( (x, i) => {
         if (x.geo !== props.selectedProjection.geo) {
             return (
-                <div key={i}>
                     <button
-                        className="btn btn-secondary"
+                        className="btn btn-block btn-secondary my-1"
+                        key={i}
                         onClick={ () => {
                         return props.changeProjection(x)} }
                     >
                         {x.name} Projection
                     </button>
-                </div>
             )
         }
         else return null;
